@@ -8,4 +8,4 @@ async function neededData(url) {
   return data.json();
 }
 
-export { fetchData, neededData };
+export { neededData };
