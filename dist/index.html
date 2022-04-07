@@ -18,10 +18,12 @@
     </div>
     <div class="container">
       <div class="temp-image">
-        <img
-          src="./images/1636731576678.jpg--a_mainly_dry_and_sunny_weekend_on_the_way.jpg"
-          alt=""
-        />
+        <div class="bg">
+          <img
+            src="./images/1636731576678.jpg--a_mainly_dry_and_sunny_weekend_on_the_way.jpg"
+            alt=""
+          />
+        </div>
         <div class="info">
           <div class="temp">11°C</div>
           <div class="location-date">
@@ -34,7 +36,38 @@
           </div>
         </div>
       </div>
-      <div class="weather-details"></div>
+      <div class="weather-details">
+        <div class="search-bar">
+          <input
+            type="text"
+            name=""
+            id="searchBar"
+            placeholder="Another Location"
+          />
+
+          <img
+            src="./images/magnify.svg"
+            alt=""
+            height="50px"
+            width="50px"
+            class="search-icon"
+            id="startSearch"
+          />
+        </div>
+        <ul class="states">
+          <li>Djelfa</li>
+          <li>New York</li>
+          <li>Boston</li>
+          <li>Los Angeles</li>
+        </ul>
+        <div class="thin-line"></div>
+        <div class="weather-info">
+          <h1>Weather Details</h1>
+          <div><span>Cloudy</span><span>86%</span></div>
+          <div><span>Humidity</span><span>62%</span></div>
+          <div><span>Wind</span><span>8km/h</span></div>
+        </div>
+      </div>
     </div>
   </body>
 </html>
