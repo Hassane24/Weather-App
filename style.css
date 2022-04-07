@@ -22,7 +22,6 @@ body {
   left: 0;
   right: 0;
   bottom: 0;
-  filter: blur(60px);
   -webkit-filter: blur(60px);
 }
 
@@ -39,6 +38,8 @@ body {
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
+  display: flex;
+  width: 80%;
 }
 
 .temp-image {
@@ -46,6 +47,8 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
+  width: 100%;
+  height: 100%;
 }
 
 .info {
@@ -56,6 +59,16 @@ body {
   column-gap: 0.5rem;
   margin-left: 10%;
   margin-bottom: 10%;
+}
+
+.bg {
+  display: flex;
+  height: 100%;
+}
+
+.bg img {
+  flex: 1;
+  height: 100%;
 }
 
 .temp {
@@ -77,5 +90,80 @@ body {
   font-size: 0.8rem;
 }
 
-.temp-image > img:first-child {
+.weather-details {
+  background: linear-gradient(
+    90deg,
+    rgb(1 49 71 / 51%) 100%,
+    rgb(105 138 152 / 31%) 100%
+  );
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  padding: 1rem;
+  gap: 1rem;
+  width: 100%;
+}
+
+.search-bar {
+  display: flex;
+  align-items: center;
+}
+
+.search-icon {
+  align-self: stretch;
+  margin-left: auto;
+  background-color: #50ebb7;
+}
+
+.search-icon:hover {
+  transform: scale(106%);
+  transition: ease-in-out 300ms;
+  cursor: pointer;
+  background-color: rgb(52, 105, 204, 0.6);
+}
+
+input[type="text"] {
+  background: none;
+  border: none;
+  border-bottom: 2px solid white;
+}
+
+.states {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.states li {
+  margin-bottom: 1rem;
+  color: white;
+}
+
+.states li:hover {
+  cursor: pointer;
+  transform: scale(103%);
+  transition: all 100ms;
+  background-color: rgb(48, 47, 47, 0.3);
+}
+
+.thin-line {
+  background-color: white;
+  height: 1px;
+}
+
+.weather-info {
+  display: flex;
+  flex-direction: column;
+  row-gap: 1rem;
+}
+
+.weather-info div {
+  display: flex;
+  justify-content: space-between;
+  color: #fafafa;
+}
+
+.weather-details h1 {
+  color: #fafafa;
+  font-size: 2rem;
 }
