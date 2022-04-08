@@ -1,3 +1,5 @@
+import { neededData } from "./fetch";
+
 const UI = (() => {
   const searchBar = document.querySelector("#searchBar");
   const searchButton = document.querySelector("#startSearch");
@@ -8,7 +10,31 @@ const UI = (() => {
   const weatherState = document.querySelector("#weather-state");
   const states = document.querySelectorAll("[data-state]");
 
-  return {};
+  function loadHomePage() {}
+
+  states.forEach((state) => {
+    state.addEventListener("click", (e) => {
+      neededData(
+        `https://api.openweathermap.org/data/2.5/weather?q=${e.target.innerText}&APPID=512dd7c72356c3b72f04ac7af77e9f8a&units=metric`
+      ).then((res) => {
+        if (res.cod === "404") return console.log(res.message);
+        if (res.cod === "400") return console.log(res.message);
+        console.log(res);
+      });
+    });
+  });
+
+  searchButton.addEventListener("click", () => {
+    neededData(
+      `https://api.openweathermap.org/data/2.5/weather?q=${searchBar.value}&APPID=512dd7c72356c3b72f04ac7af77e9f8a&units=metric`
+    ).then((res) => {
+      if (res.cod === "400") return console.log(res.message);
+      if (res.cod === "404") return console.log(res.message);
+      console.log(res);
+    });
+  });
+
+  return { loadHomePage };
 })();
 
 export { UI };
