@@ -1,5 +1,5 @@
 async function fetchData(url) {
-  const response = await fetch(url, { mode: "cors" });
+  const response = fetch(url, { mode: "cors" });
   return response;
 }
 
