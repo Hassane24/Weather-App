@@ -21,7 +21,6 @@ const UI = (() => {
         `https://api.openweathermap.org/data/2.5/weather?q=${e.target.innerText}&APPID=512dd7c72356c3b72f04ac7af77e9f8a&units=metric`
       ).then((res) => {
         displayData(res);
-        console.log(res);
         getTimeZone(res);
       });
     });
@@ -34,9 +33,9 @@ const UI = (() => {
       (res) => {
         if (res.cod === "400") return alert(res.message);
         if (res.cod === "404") return alert(res.message);
-        console.log(res);
         displayData(res);
         getTimeZone(res);
+        searchBar.value = "";
       },
       (err) => {
         console.log(err);
@@ -51,6 +50,14 @@ const UI = (() => {
     clouds.textContent = `${data.clouds.all}%`;
     humidity.textContent = `${data.main.humidity}%`;
     wind.textContent = `${Math.round(data.wind.speed * 3.6 * 100) / 100}km/h`;
+    if (weatherState.textContent == "Clear") weatherIcon.src = "images/sun.svg";
+    if (weatherState.textContent == "Thunderstorm")
+      weatherIcon.src = "images/lightning.svg";
+    if (weatherState.textContent == "Snow") weatherIcon.src = "images/snow.svg";
+    if (weatherState.textContent == "Clouds")
+      weatherIcon.src = "images/cloudy.svg";
+    if (weatherState.textContent == "Rain")
+      weatherIcon.src = "images/rainy.svg";
   }
 
   function getTimeZone(data) {
