@@ -60,14 +60,11 @@ const UI = (() => {
     let DAY = "";
     let HOUR = "";
     let MINUTES = "";
-
     const datey = new Date();
     const offset = datey.getTimezoneOffset();
     datey.setMinutes(datey.getMinutes() + offset + data.timezone / 60);
-    console.log(datey);
     YEAR = datey.getFullYear();
     DAYMONTH = datey.getDate();
-    console.log(DAYMONTH);
     HOUR = datey.getHours();
     MINUTES = datey.getMinutes();
     if (datey.getMonth() == 0) MONTH = "Jan";
