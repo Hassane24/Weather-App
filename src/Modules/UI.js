@@ -13,8 +13,6 @@ const UI = (() => {
   const humidity = document.querySelector("#humidity");
   const clouds = document.querySelector("#clouds");
 
-  function loadHomePage() {}
-
   states.forEach((state) => {
     state.addEventListener("click", (e) => {
       neededData(
@@ -95,8 +93,6 @@ const UI = (() => {
     if (datey.getDay() == 6) DAY = "Saturday";
     date.textContent = `${HOUR}:${MINUTES} - ${DAY}, ${DAYMONTH} ${MONTH} ${YEAR}`;
   }
-
-  return { loadHomePage };
 })();
 
 export { UI };

@@ -123,9 +123,16 @@ body {
 }
 
 input[type="text"] {
+  font-size: 1.3rem;
+  padding-left: 0.5rem;
+  color: white;
   background: none;
   border: none;
   border-bottom: 2px solid white;
+}
+
+input::-webkit-input-placeholder {
+  color: white;
 }
 
 .states {
