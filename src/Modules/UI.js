@@ -22,6 +22,7 @@ const UI = (() => {
       ).then((res) => {
         displayData(res);
         console.log(res);
+        getTimeZone(res);
       });
     });
   });
@@ -35,6 +36,7 @@ const UI = (() => {
         if (res.cod === "404") return alert(res.message);
         console.log(res);
         displayData(res);
+        getTimeZone(res);
       },
       (err) => {
         console.log(err);
@@ -49,6 +51,45 @@ const UI = (() => {
     clouds.textContent = `${data.clouds.all}%`;
     humidity.textContent = `${data.main.humidity}%`;
     wind.textContent = `${Math.round(data.wind.speed * 3.6 * 100) / 100}km/h`;
+  }
+
+  function getTimeZone(data) {
+    let YEAR = "";
+    let MONTH = "";
+    let DAYMONTH = "";
+    let DAY = "";
+    let HOUR = "";
+    let MINUTES = "";
+
+    const datey = new Date();
+    const offset = datey.getTimezoneOffset();
+    datey.setMinutes(datey.getMinutes() + offset + data.timezone / 60);
+    console.log(datey);
+    YEAR = datey.getFullYear();
+    DAYMONTH = datey.getDate();
+    console.log(DAYMONTH);
+    HOUR = datey.getHours();
+    MINUTES = datey.getMinutes();
+    if (datey.getMonth() == 0) MONTH = "Jan";
+    if (datey.getMonth() == 1) MONTH = "Feb";
+    if (datey.getMonth() == 2) MONTH = "Mar";
+    if (datey.getMonth() == 3) MONTH = "Apr";
+    if (datey.getMonth() == 4) MONTH = "May";
+    if (datey.getMonth() == 5) MONTH = "June";
+    if (datey.getMonth() == 6) MONTH = "July";
+    if (datey.getMonth() == 7) MONTH = "Aug";
+    if (datey.getMonth() == 8) MONTH = "Sep";
+    if (datey.getMonth() == 9) MONTH = "Oct";
+    if (datey.getMonth() == 10) MONTH = "Nov";
+    if (datey.getMonth() == 11) MONTH = "Dec";
+    if (datey.getDay() == 0) DAY = "Sunday";
+    if (datey.getDay() == 1) DAY = "Monday";
+    if (datey.getDay() == 2) DAY = "Tuesday";
+    if (datey.getDay() == 3) DAY = "Wednesday";
+    if (datey.getDay() == 4) DAY = "Thursday";
+    if (datey.getDay() == 5) DAY = "Friday";
+    if (datey.getDay() == 6) DAY = "Saturday";
+    date.textContent = `${HOUR}:${MINUTES} - ${DAY}, ${DAYMONTH} ${MONTH} ${YEAR}`;
   }
 
   return { loadHomePage };
