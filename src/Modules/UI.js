@@ -12,6 +12,22 @@ const UI = (() => {
   const wind = document.querySelector("#wind");
   const humidity = document.querySelector("#humidity");
   const clouds = document.querySelector("#clouds");
+  const convertDegree = document.querySelector("#fahrenheit");
+
+  convertDegree.addEventListener("click", () => {
+    if (!temp.textContent) return;
+    if (convertDegree.checked) {
+      let degreeCelcius = temp.textContent;
+      degreeCelcius = parseInt(degreeCelcius, 10);
+      degreeCelcius = (degreeCelcius * 9) / 5 + 32;
+      temp.textContent = Math.round(degreeCelcius * 100) / 100
+    } else {
+      let degreefahrenheit = temp.textContent;
+      degreefahrenheit  = parseInt(degreefahrenheit , 10);
+      degreefahrenheit  = ((degreefahrenheit  - 32) * 5) / 9;
+      temp.textContent = Math.round(degreefahrenheit * 100) / 100
+    }
+  });
 
   states.forEach((state) => {
     state.addEventListener("click", (e) => {
