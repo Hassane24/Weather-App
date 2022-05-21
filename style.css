@@ -174,3 +174,23 @@ input::-webkit-input-placeholder {
   color: #fafafa;
   font-size: 2rem;
 }
+
+.change-degree {
+  display: flex;
+  align-items: center;
+}
+
+label[for="fahrenheit"] {
+  font-size: 1.5rem;
+  margin-left: auto;
+}
+
+.convert {
+  margin-left: 16px;
+  cursor: pointer;
+  width: 30px;
+  height: 30px;
+  background: white;
+  border-radius: 5px;
+  border: 2px solid #555;
+}
