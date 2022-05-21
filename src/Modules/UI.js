@@ -22,10 +22,10 @@ const UI = (() => {
       degreeCelcius = (degreeCelcius * 9) / 5 + 32;
       temp.textContent = Math.round(degreeCelcius * 100) / 100
     } else {
-      let degreefahrenheit = temp.textContent;
-      degreefahrenheit  = parseInt(degreefahrenheit , 10);
-      degreefahrenheit  = ((degreefahrenheit  - 32) * 5) / 9;
-      temp.textContent = Math.round(degreefahrenheit * 100) / 100
+      let degreeFahrenheit = temp.textContent;
+      degreeFahrenheit  = parseInt(degreeFahrenheit , 10);
+      degreeFahrenheit  = ((degreeFahrenheit  - 32) * 5) / 9;
+      temp.textContent = Math.round(degreeFahrenheit * 100) / 100
     }
   });
 
