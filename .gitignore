@@ -1,2 +1,5 @@
 node_modules
+<<<<<<< HEAD
 ./dist/main.js
+=======
+>>>>>>> feature-fahrenheit-to-celsius
