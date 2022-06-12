@@ -17,23 +17,40 @@ const UI = (() => {
   convertDegree.addEventListener("click", () => {
     if (!temp.textContent) return;
     if (convertDegree.checked) {
-      let degreeCelcius = temp.textContent;
-      degreeCelcius = parseInt(degreeCelcius, 10);
-      degreeCelcius = (degreeCelcius * 9) / 5 + 32;
-      temp.textContent = Math.round(degreeCelcius * 100) / 100
+      const temperature = parseFloat(temp.textContent);
+      temp.textContent = round(celsiusToFahrenheit(temperature), 2);
     } else {
-      let degreeFahrenheit = temp.textContent;
-      degreeFahrenheit  = parseInt(degreeFahrenheit , 10);
-      degreeFahrenheit  = ((degreeFahrenheit  - 32) * 5) / 9;
-      temp.textContent = Math.round(degreeFahrenheit * 100) / 100
+      const temperature = parseFloat(temp.textContent);
+      temp.textContent = round(fahrenheitToCelsius(temperature), 2);
     }
   });
+
+  const celsiusToFahrenheit = (celsius) => (celsius * 9) / 5 + 32;
+
+  const fahrenheitToCelsius = (fahrenheit) => ((fahrenheit - 32) * 5) / 9;
+
+  const round = (num, places) => {
+    num = parseFloat(num);
+    places = places ? parseInt(places, 10) : 0;
+    if (places > 0) {
+      let length = places;
+      places = "1";
+      for (let i = 0; i < length; i++) {
+        places += "0";
+        places = parseInt(places, 10);
+      }
+    } else {
+      places = 1;
+    }
+    return Math.round((num + Number.EPSILON) * (1 * places)) / (1 * places);
+  };
 
   states.forEach((state) => {
     state.addEventListener("click", (e) => {
       neededData(
         `https://api.openweathermap.org/data/2.5/weather?q=${e.target.innerText}&APPID=512dd7c72356c3b72f04ac7af77e9f8a&units=metric`
       ).then((res) => {
+        convertDegree.checked = false;
         displayData(res);
         getTimeZone(res);
       });
@@ -47,6 +64,7 @@ const UI = (() => {
       (res) => {
         if (res.cod === "400") return alert(res.message);
         if (res.cod === "404") return alert(res.message);
+        convertDegree.checked = false;
         displayData(res);
         getTimeZone(res);
         searchBar.value = "";
@@ -58,12 +76,16 @@ const UI = (() => {
   });
 
   function displayData(data) {
+    const METERS_PER_SECS_TO_KM_PER_HOURS = 3.6;
+    if (data === undefined) return;
     location.textContent = data.name;
     temp.textContent = `${data.main.temp}°C`;
     weatherState.textContent = data.weather[0].main;
     clouds.textContent = `${data.clouds.all}%`;
     humidity.textContent = `${data.main.humidity}%`;
-    wind.textContent = `${Math.round(data.wind.speed * 3.6 * 100) / 100}km/h`;
+    wind.textContent = `${
+      Math.round(data.wind.speed * METERS_PER_SECS_TO_KM_PER_HOURS * 100) / 100
+    }km/h`;
     if (weatherState.textContent == "Clear") weatherIcon.src = "images/sun.svg";
     if (weatherState.textContent == "Thunderstorm")
       weatherIcon.src = "images/lightning.svg";
